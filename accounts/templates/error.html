@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+
+<div class="global-container">
+	<div class="card login-form">
+	<div class="card-body">
+		<h3 class="card-title text-center">An Error has been occured.</h3>
+		{% if msg %}
+		<div class="card-title text-center">
+		{{msg}}<br>
+		<a href="{% url 'login_attempt' %}" class="btn btn-success">Login</a>
+		</div>
+		{% else %}
+		<div class="card-title text-center">
+		<a href="/" class="btn btn-success">Back</a>
+		</div>
+		{% endif %}
+	</div>
+</div>
+</div>
+
+
+
+{% endblock content %}
