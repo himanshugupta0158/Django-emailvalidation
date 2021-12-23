@@ -123,13 +123,29 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+
+# Below all are required setting for sending mail to user email
+    """
+    > make sure your google email and password in environment setting
+    > EMAIL_USER for email and EMAIL_PASS for password
+    >check in cmd using python interpreter , 
+    import os
+    os.environ.get('EMAIL_USER')
+    will show your email
+    same for password.
+    
+    """
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
-EMAIL_HOST_USER = os.environ.get('EMAIL_USER')
-EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_PASS')
+EMAIL_HOST_USER = os.environ.get('EMAIL_USER') #can also use your real email here instead
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_PASS')#can also use your real password here instead
 
 
+
+# first setup path for accounts of admin like path('accounts',include("django.contrib.auth.urls"))
+# this will go to this uel on logging in
 LOGIN_REDIRECT_URL = "home"
-LOGOUT_REDIRECT_URL = "login"
+# this will work on logging out or going to logout link.
+LOGOUT_REDIRECT_URL = "login_attempt"
