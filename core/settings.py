@@ -125,16 +125,16 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 # Below all are required setting for sending mail to user email
-    """
-    > make sure your google email and password in environment setting
-    > EMAIL_USER for email and EMAIL_PASS for password
-    >check in cmd using python interpreter , 
-    import os
-    os.environ.get('EMAIL_USER')
-    will show your email
-    same for password.
+"""
+> make sure your google email and password in environment setting
+> EMAIL_USER for email and EMAIL_PASS for password
+>check in cmd using python interpreter , 
+import os
+os.environ.get('EMAIL_USER')
+will show your email
+same for password.
     
-    """
+"""
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_USE_TLS = True

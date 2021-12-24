@@ -27,17 +27,17 @@ def login_attempt(request):
         user_obj = User.objects.filter(username = username).first()
         if user_obj is None:
             messages.success(request, "User not found !")
-            return redirect('/login')
+            return redirect('login_attempt')
         
         profile_obj = Profile.objects.filter(user=user_obj).first()
         
         if not profile_obj.is_verified :
             messages.success(request, "User is not verified check your mail.")
-            return redirect('/login')
+            return redirect('login_attempt')
         user = authenticate(username=username , password=password)
         if user is None :
             messages.success(request, "Wrong password.")
-            return redirect('/login')
+            return redirect('login_attempt')
         
         login(request , user)
         return redirect('/')
@@ -131,7 +131,7 @@ def send_OTP(request , email):
     message = f"Hi , \n Your OTP for password reset :\n{otp} " 
     email_from = settings.EMAIL_HOST_USER
     recipient_list = [email]
-    send_mail(subject , message , email_from , recipient_list )
+    send_mail(subject , message , email_from , recipient_list)
 
 # to verify token is correct or received by authentic user.
 def verify_OTP(request):
@@ -144,7 +144,7 @@ def verify_OTP(request):
             user.set_password(password)
             request.session.flush()
             messages.success(request, "Password changed successfully.")
-            return redirect('/login_attempt')
+            return redirect('login_attempt')
         else:
             messages.success(request, "OTP does not match.")
             return render(request , "verify_otp.html")
